@@ -219,6 +219,19 @@
         <path name="compress-offload-playback" />
     </path>
 
+    <path name="compress-offload-playback afe-proxy">
+        <ctl name="AFE_PCM_RX Audio Mixer MultiMedia4" value="1" />
+    </path>
+
+    <path name="compress-offload-playback usb-headphones">
+        <path name="compress-offload-playback afe-proxy" />
+    </path>
+
+    <path name="compress-offload-playback speaker-and-usb-headphones">
+        <path name="compress-offload-playback usb-headphones" />
+        <path name="compress-offload-playback" />
+    </path>
+
     <path name="audio-record">
         <ctl name="MultiMedia1 Mixer SLIM_0_TX" value="1" />
     </path>
@@ -318,7 +331,8 @@
 
     <path name="headset-mic">
         <path name="adc2" />
-        <ctl name="ADC2 Volume" value="8" />
+        <ctl name="ADC2 Volume" value="16" />
+        <ctl name="DEC5 Volume" value="90" />
     </path>
 
     <path name="voice-handset">
@@ -351,8 +365,9 @@
     </path>
 
     <path name="voice-headset-mic">
-        <path name="headset-mic" />
-        <ctl name="ADC2 Volume" value="13" />
+        <path name="adc2" />
+        <ctl name="ADC2 Volume" value="17" />
+        <ctl name="DEC5 Volume" value="96" />
     </path>
 
     <path name="speaker-and-headphones">
