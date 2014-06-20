@@ -243,6 +243,9 @@ on post-fs-data
     chmod 664 /sys/devices/system/cpu/cpu3/online
     write /dev/cpuctl/apps/cpu.notify_on_migrate 1
 
+    # Doubletap2wake
+    chown system system /sys/android_touch/doubletap2wake
+
     # Hardware tunables
     chown root system /sys/class/timed_output/vibrator/amp
     chown root system /sys/devices/platform/kcal_ctrl.0/kcal
