@@ -125,6 +125,6 @@ BOARD_RECOVERY_SWIPE := true
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 # Hardware
-BOARD_HARDWARE_CLASS := device/lge/hammerhead/cmhw
+BOARD_HARDWARE_CLASS := device/lge/hammerhead/mkhw
 
 -include vendor/lge/hammerhead/BoardConfigVendor.mk

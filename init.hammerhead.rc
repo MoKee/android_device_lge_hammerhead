@@ -246,6 +246,9 @@ on post-fs-data
     # Doubletap2wake
     chown system system /sys/android_touch/doubletap2wake
 
+    # Sweep2wake
+    chown system system /sys/android_touch/sweep2wake
+
     # Hardware tunables
     chown root system /sys/class/timed_output/vibrator/amp
     chown root system /sys/devices/platform/kcal_ctrl.0/kcal
