@@ -17,31 +17,41 @@
 package org.mokee.hardware;
 
 import org.mokee.hardware.util.FileUtils;
-import java.io.*;
 
 public class SweepToWake {
 
-    private static String CONTROL_PATH = "/sys/android_touch/sweep2wake";
+    private static String CONTROL_PATH1 = "/sys/android_touch/sweep2wake";
+    private static String CONTROL_PATH2 = "/sys/android_touch/s2w_s2sonly";
 
     public static boolean isSupported() {
-        return true;
+        return FileUtils.fileExist(CONTROL_PATH1) &&
+                FileUtils.fileExist(CONTROL_PATH2);
     }
 
-    public static boolean isEnabled() {
-        return FileUtils.readOneLine(CONTROL_PATH).equals("1");
+    public static int isEnabled() {
+        String s2w = FileUtils.readOneLine(CONTROL_PATH1);
+        String s2s = FileUtils.readOneLine(CONTROL_PATH2);
+
+        if (s2w.equals("0")) {
+            return 0;
+        } else if (s2w.equals("1") && s2s.equals("0")) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
-    public static boolean setEnabled(boolean state) {
-        String value = state ? "1" : "0";
-        try {
-            Process p = Runtime.getRuntime().exec("sh");
-            DataOutputStream os = new DataOutputStream(p.getOutputStream());
-            os.writeBytes("echo " + value + " > " + CONTROL_PATH + "\n");
-            os.writeBytes("exit\n");
-            os.flush();
-            return true;
-        } catch (IOException e) {
-            return false;
+    public static boolean setEnabled(int type) {
+        switch(type) {
+            case 0:
+                return FileUtils.altWrite(false, CONTROL_PATH1) &&
+                        FileUtils.altWrite(false, CONTROL_PATH2);
+            case 1:
+                return FileUtils.altWrite(true, CONTROL_PATH1) &&
+                        FileUtils.altWrite(false, CONTROL_PATH2);
+            default:
+                return FileUtils.altWrite(true, CONTROL_PATH1) &&
+                        FileUtils.altWrite(true, CONTROL_PATH2);
         }
     }
 }

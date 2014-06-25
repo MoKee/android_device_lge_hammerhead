@@ -248,6 +248,7 @@ on post-fs-data
 
     # Sweep2wake
     chown system system /sys/android_touch/sweep2wake
+    chown system system /sys/android_touch/s2w_s2sonly
 
     # Hardware tunables
     chown root system /sys/class/timed_output/vibrator/amp

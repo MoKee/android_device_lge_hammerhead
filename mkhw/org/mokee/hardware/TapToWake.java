@@ -17,14 +17,13 @@
 package org.mokee.hardware;
 
 import org.mokee.hardware.util.FileUtils;
-import java.io.*;
 
 public class TapToWake {
 
     private static String CONTROL_PATH = "/sys/android_touch/doubletap2wake";
 
     public static boolean isSupported() {
-        return true;
+        return FileUtils.fileExist(CONTROL_PATH);
     }
 
     public static boolean isEnabled() {
@@ -32,16 +31,7 @@ public class TapToWake {
     }
 
     public static boolean setEnabled(boolean state) {
-        String value = state ? "1" : "0";
-        try {
-            Process p = Runtime.getRuntime().exec("sh");
-            DataOutputStream os = new DataOutputStream(p.getOutputStream());
-            os.writeBytes("echo " + value + " > " + CONTROL_PATH + "\n");
-            os.writeBytes("exit\n");
-            os.flush();
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
+        return FileUtils.altWrite(state, CONTROL_PATH);
     }
 }
+
