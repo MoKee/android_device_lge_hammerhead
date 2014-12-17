@@ -135,6 +135,7 @@ BOARD_SEPOLICY_UNION += \
        sensors.te \
        ssr.te \
        surfaceflinger.te \
+       system_app.te \
        system_server.te \
        tee.te \
        thermald.te \
@@ -161,6 +162,9 @@ USE_DEVICE_SPECIFIC_CAMERA:= true
 RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+
+# Hardware
+BOARD_HARDWARE_CLASS := device/lge/hammerhead/cmhw
 
 -include vendor/lge/hammerhead/BoardConfigVendor.mk
 
