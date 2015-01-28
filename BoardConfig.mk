@@ -164,7 +164,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # Hardware
-BOARD_HARDWARE_CLASS := device/lge/hammerhead/cmhw
+BOARD_HARDWARE_CLASS := device/lge/hammerhead/mkhw
 
 -include vendor/lge/hammerhead/BoardConfigVendor.mk
 
