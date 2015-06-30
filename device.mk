@@ -261,6 +261,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.smgr_mag_cal_en=true \
     ro.qti.sensors.step_detector=true \
     ro.qti.sensors.step_counter=true \
+    ro.qti.sensors.pick_up=false \
     ro.qti.sensors.tap=false \
     ro.qti.sensors.facing=false \
     ro.qti.sensors.tilt=false \
@@ -270,6 +271,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.pedometer=false \
     ro.qti.sensors.pam=false \
     ro.qti.sdk.sensors.gestures=false
+
+# Doze mode
+PRODUCT_PACKAGES += \
+    HammerheadDoze
 
 # Enable some debug messages by default
 PRODUCT_PROPERTY_OVERRIDES += \
