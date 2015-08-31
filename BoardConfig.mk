@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Use SaberMod Toolchains
-SABERMOD_TOOLCHAIN_ENABLED := true
-
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
