@@ -107,7 +107,7 @@ BOARD_HAL_STATIC_LIBRARIES := libdumpstate.hammerhead
 BOARD_SEPOLICY_DIRS += device/lge/hammerhead/sepolicy
 
 # Define kernel config for inline building
-TARGET_KERNEL_CONFIG := cyanogenmod_hammerhead_defconfig
+TARGET_KERNEL_CONFIG := mokee_hammerhead_defconfig
 TARGET_KERNEL_SOURCE := kernel/lge/hammerhead
 
 HAVE_ADRENO_SOURCE:= false
@@ -128,7 +128,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # Hardware
-BOARD_HARDWARE_CLASS := device/lge/hammerhead/cmhw
+BOARD_HARDWARE_CLASS := device/lge/hammerhead/mkhw
 
 -include vendor/lge/hammerhead/BoardConfigVendor.mk
 
