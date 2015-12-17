@@ -149,6 +149,36 @@ RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
+# Twrp
+
+# if build twrp use mokee tree, just remove '#'
+RECOVERY_VARIANT := twrp
+
+# if you want the twrp support zh_cn ,just remove '#'
+TW_EXTRA_LANGUAGES := true
+
+# if you want to use toybox for getprop,setprop ,build with twrp
+TW_USE_TOOLBOX := true
+TW_THEME := portrait_hdpi
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_NO_USB_STORAGE := false
+#TW_INCLUDE_JB_CRYPTO := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+# The real path for this is /sys/devices/mdp.0/qcom,cmdss_fb_primary.160/leds/lcd-backlight/brightness but the comma doesn't compile correctly
+TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.160/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_TIMEOUT := true
+# start adb as root when build twrp
+ifeq ($(TW_BUILD_ZH_CN_SUPPORT),true)
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0 \
+				ro.secure=0
+endif
+
+
+# Hardware
+BOARD_HARDWARE_CLASS := device/lge/hammerhead/mkhw
 -include vendor/lge/hammerhead/BoardConfigVendor.mk
 
 # Enable Minikin text layout engine (will be the default soon)
@@ -156,3 +186,28 @@ USE_MINIKIN := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
+
+
+#MultiROM config. MultiROM also uses parts of TWRP config
+RECOVERY_VARIANT := multirom
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/lge/hammerhead/multirom/mr_init_devices.c
+MR_DPI := xhdpi
+MR_DPI_FONT := 340
+MR_FSTAB := device/lge/hammerhead/twrp.fstab
+MR_KEXEC_MEM_MIN := 0x20000000
+MR_KEXEC_DTB := true
+MR_INFOS := device/lge/hammerhead/multirom/infos
+MR_DEVICE_HOOKS := device/lge/hammerhead/multirom/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 3
+MR_DEVICE_RECOVERY_HOOKS := device/lge/hammerhead/multirom/mr_hooks_recovery.c
+MR_DEVICE_RECOVERY_HOOKS_VER := 1
+MR_CONTINUOUS_FB_UPDATE := true
+MR_PIXEL_FORMAT := "RGB_565"
+MR_ENCRYPTION := true
+TW_INCLUDE_CRYPTO := true
+MR_ENCRYPTION_SETUP_SCRIPT := device/lge/hammerhead/multirom/mr_cp_crypto.sh
+
+DEVICE_RESOLUTION := 1080x1920
+TARGET_RECOVERY_IS_MULTIROM := true
+
