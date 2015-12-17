@@ -127,6 +127,34 @@ RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
+# Twrp
+
+# if build twrp use mokee tree, just remove '#'
+RECOVERY_VARIANT := twrp
+
+# if you want the twrp support zh_cn ,just remove '#'
+TW_BUILD_ZH_CN_SUPPORT := true
+
+# if you want to use toybox for getprop,setprop ,build with twrp 
+TW_USE_TOOLBOX := true
+TW_THEME := portrait_hdpi
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_NO_USB_STORAGE := false
+#TW_INCLUDE_JB_CRYPTO := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+# The real path for this is /sys/devices/mdp.0/qcom,cmdss_fb_primary.160/leds/lcd-backlight/brightness but the comma doesn't compile correctly
+TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.160/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_TIMEOUT := true
+# start adb as root when build twrp 
+ifeq ($(TW_BUILD_ZH_CN_SUPPORT),true)
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0 \
+				ro.secure=0
+endif
+
+
 # Hardware
 BOARD_HARDWARE_CLASS := device/lge/hammerhead/mkhw
 
@@ -137,3 +165,4 @@ USE_MINIKIN := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
+
