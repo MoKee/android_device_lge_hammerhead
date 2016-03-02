@@ -206,6 +206,8 @@ on post-fs-data
     chmod 0664 /sys/devices/virtual/timed_output/vibrator/amp
     chown system system /sys/devices/virtual/graphics/fb0/rgb
     chmod 0664 /sys/devices/virtual/graphics/fb0/rgb
+    chown system system /sys/android_touch/doubletap2wake
+    chmod 0664 /sys/android_touch/doubletap2wake
 
 on charger
     # Booting modem
