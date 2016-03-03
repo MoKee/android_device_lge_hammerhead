@@ -51,6 +51,7 @@
 #define LOW_POWER_MIN_FREQ "300000"
 #define NORMAL_MAX_FREQ "2265600"
 #define UEVENT_STRING "online@/devices/system/cpu/"
+#define WAKE_GESTURE_PATH "/sys/android_touch/doubletap2wake"
 
 static int client_sockfd;
 static struct sockaddr_un client_addr;
@@ -338,6 +339,18 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
     }
 }
 
+static void set_feature(struct power_module *module, feature_t feature, int state)
+{
+    switch (feature) {
+    case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
+        sysfs_write(WAKE_GESTURE_PATH, state ? "1" : "0");
+        break;
+    default:
+        ALOGW("Error setting the feature, it doesn't exist %d\n", feature);
+        break;
+    }
+}
+
 static void power_hint( __attribute__((unused)) struct power_module *module,
                       power_hint_t hint, __attribute__((unused)) void *data)
 {
@@ -402,4 +415,5 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .init = power_init,
     .setInteractive = power_set_interactive,
     .powerHint = power_hint,
+    .setFeature = set_feature,
 };

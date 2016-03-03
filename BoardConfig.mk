@@ -143,7 +143,6 @@ endif
 
 # Hardware
 BOARD_HARDWARE_CLASS := device/lge/hammerhead/mkhw
-TARGET_TAP_TO_WAKE_NODE := "/sys/android_touch/doubletap2wake"
 
 # Recovery
 RECOVERY_FSTAB_VERSION := 2
