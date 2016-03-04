@@ -343,7 +343,7 @@ static void set_feature(struct power_module *module, feature_t feature, int stat
 {
     switch (feature) {
     case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
-        sysfs_write(WAKE_GESTURE_PATH, state ? "1" : "0");
+        sysfs_write(WAKE_GESTURE_PATH, state ? "1\n" : "0\n");
         break;
     default:
         ALOGW("Error setting the feature, it doesn't exist %d\n", feature);
