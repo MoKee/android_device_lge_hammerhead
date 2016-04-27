@@ -22,6 +22,8 @@ import java.io.File;
 
 public class DisplayColorCalibration {
     private static final String COLOR_FILE = "/sys/devices/platform/kcal_ctrl.0/kcal";
+    private static final String COLOR_FILE_CTRL = "/sys/devices/platform/kcal_ctrl.0/kcal_ctrl";
+
 
     public static boolean isSupported() {
         return new File(COLOR_FILE).exists();
@@ -44,6 +46,9 @@ public class DisplayColorCalibration {
     }
 
     public static boolean setColors(String colors) {
-        return FileUtils.writeLine(COLOR_FILE, colors);
+        if (!FileUtils.writeLine(COLOR_FILE, colors)) {
+            return false;
+        }
+        return FileUtils.writeLine(COLOR_FILE_CTRL, "1");
     }
 }

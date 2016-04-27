@@ -157,6 +157,7 @@
 # Hardware tunables
 /sys/devices/virtual/timed_output/vibrator/amp -- u:object_r:sysfs_hardware:s0
 /sys/devices/platform/kcal_ctrl.0/kcal -- u:object_r:sysfs_hardware:s0
+/sys/devices/platform/kcal_ctrl.0/kcal_ctrl -- u:object_r:sysfs_hardware:s0
 /sys/android_touch/doubletap2wake -- u:object_r:sysfs_hardware:s0
 
 # Thermal engine

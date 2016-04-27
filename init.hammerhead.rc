@@ -206,6 +206,8 @@ on post-fs-data
     chmod 0664 /sys/devices/virtual/timed_output/vibrator/amp
     chown system system /sys/devices/platform/kcal_ctrl.0/kcal
     chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
     chown system system /sys/android_touch/doubletap2wake
     chmod 0664 /sys/android_touch/doubletap2wake
 
